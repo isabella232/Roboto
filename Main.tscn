@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Models/Village_FBX/Village.fbx" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Scripts/CameraMovement.gd" type="Script" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Village" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.411779, -0.286541, 0.865062, 0.123156, 0.958068, 0.258725, -0.902923, 8.24201e-09, 0.429802, -1.76001, 0.45971, 0 )
+light_energy = 1.2
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="."]
+transform = Transform( -0.505792, -0.229228, -0.831642, -0.656314, -0.523394, 0.543424, -0.559845, 0.820678, 0.114283, -1.76001, 0.45971, 0 )
+light_energy = 0.3
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376407, 0.475391 )
+script = ExtResource( 2 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+
+[node name="ARVRController" type="ARVRController" parent="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.376407, -0.475391 )

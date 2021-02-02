@@ -19,6 +19,7 @@ light_energy = 0.3
 [node name="ARVROrigin" type="ARVROrigin" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376407, 0.475391 )
 script = ExtResource( 2 )
+vrMode = 2
 
 [node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
 

@@ -9,7 +9,7 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="Village" parent="." instance=ExtResource( 1 )]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -0.479433 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.377488, -0.476649, 0.79392, 0.205035, 0.879094, 0.430296, -0.90303, 0.000349943, 0.429577, -1.76001, 0.45971, 0 )

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Scripts/CameraMovement.gd" type="Script" id=1]
+
+[node name="Player" type="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0856852, 0.523469, 0.511694 )
+script = ExtResource( 1 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00132012, -2.38419e-07, 0.00343132 )
+
+[node name="ARVRController" type="ARVRController" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.376407, -0.475391 )

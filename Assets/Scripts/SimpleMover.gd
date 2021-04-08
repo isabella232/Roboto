@@ -11,45 +11,43 @@ func _ready():
 func isLocalPlayer():
 	return playerId == get_node("/root/Root/UI").controlledPlayer
 
+# Runs at 60 FPS
 func _physics_process(delta):
-	
-	# If this instance is the locally controlled player.
+	Local_MovePlayer(delta)
+	Local_SendPlayerState({
+		"T": OS.get_system_time_msecs(), 
+		"I": playerId,
+		"P": translation
+	}, get_instance_id())
+
+# For the locally controlled instance to be moved by user input
+func Local_MovePlayer(delta):
+	# Only the local player should ever run this
 	if isLocalPlayer():
-		
-		# Move the player with user input
 		if Input.is_action_pressed("move_forward"):
 			translate_object_local(transform.basis.z * speed * delta)
 		if Input.is_action_pressed("move_backward"):
 			translate_object_local(transform.basis.z * -speed * delta)
-		
-		# Send the player state to the server every frame
-		Local_SendPlayerState({
-			"T": OS.get_system_time_msecs(), 
-			"I": playerId,
-			"P": translation
-		}, get_instance_id())
 
 # For the locally controlled instance to update the server
 func Local_SendPlayerState(playerState, requester):
-	# Only the local player should run this
+	# Only the local player should ever run this
 	if isLocalPlayer() && Client.isConnected:
 		rpc_unreliable_id(1, "Server_ReceivePlayerState", playerState, requester)
 	
-# For the server to learn about updates made by any client, update it's own state 
-# and tell all clients about the update
+# For the server to learn about updates made by any client and relay that to all clients
 remote func Server_ReceivePlayerState(playerState, requester):
 	# Only the server should ever run this
 	if Server.isRunning:
-		get_node("/root/Root/World/Players/Player_" + str(playerState.I)).transform.origin = playerState.P
+		# Relay the updated player state back to all clients and the server itself
 		rpc_unreliable_id(0, "Client_ReceivePlayerState", playerState, requester)
 	
-# For all the clients to receive the player states from the server and update accordingly
-remote func Client_ReceivePlayerState(playerState, requester):
-	if Server.isRunning:
-		# The server should never execute this 
+# Runs on all clients and the server to update positions of updated player
+remotesync func Client_ReceivePlayerState(playerState, requester):
+	if isLocalPlayer():
+		# TODO: the local player should still sync if it's off by some margin,
+		# but overwriting the local player with server state is setting the
+		# local player to its history a few ms ago.
 		pass
-	
-	# No need to update the local player state. TODO: should still check the 
-	# player and server are closely in sync
-	if playerId != get_node("/root/Root/UI").controlledPlayer:
+	else:
 		get_node("/root/Root/World/Players/Player_" + str(playerState.I)).transform.origin = playerState.P

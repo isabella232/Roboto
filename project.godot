@@ -19,6 +19,15 @@ config/name="TestProject"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Server="*res://Assets/Scripts/Server.gd"
+
+[display]
+
+window/size/width=600
+window/size/height=320
+
 [gdnative]
 
 singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]

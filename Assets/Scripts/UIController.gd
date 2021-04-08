@@ -11,10 +11,9 @@ func _ready():
 
 func MakeServer():
 	Server.StartServer()
-	controlledPlayer = 0
 
 func ControlPlayer(playerId):
-	Server.ConnectToServer()
+	Client.ConnectToServer()
 	print("Setting controlled player to " + str(playerId))
 	controlledPlayer = playerId
 

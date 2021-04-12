@@ -1,8 +1,5 @@
 extends Node
 
-var controlledPlayer = 0
-
-
 func _ready():
 	get_node("Make_Server").connect("pressed", self, "MakeServer")
 	get_node("Control_Player_1").connect("pressed", self, "ControlPlayer", [1])
@@ -12,10 +9,9 @@ func _ready():
 func MakeServer():
 	Server.StartServer()
 
-func ControlPlayer(playerId):
+func ControlPlayer(index):
 	Client.ConnectToServer()
-	print("Setting controlled player to " + str(playerId))
-	controlledPlayer = playerId
+	get_node("/root/Root/World/Players/Player_" + str(index)).isLocalPlayer = true
 
 func ChangeText(newText):
 	print("Change Text to: " + newText)

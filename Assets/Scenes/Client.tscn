@@ -10,6 +10,7 @@
 [node name="Root" type="Node"]
 
 [node name="World" type="Spatial" parent="."]
+transform = Transform( 1, 0.000183384, -0.000161596, -0.000183358, 1, 9.38124e-05, 0.000161626, -9.37609e-05, 1, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="World"]
 transform = Transform( 1, 0, 0, 0, 0.893927, 0.448212, 0, -0.448212, 0.893927, 0, 4.98398, 6.42674 )

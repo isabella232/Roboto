@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Models/Village_FBX/Village.fbx" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Scripts/CameraMovement.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Models/Crysler_new_yorker_1980/Crysler_new_yorker_1980.fbx" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
@@ -9,7 +9,7 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="Village" parent="." instance=ExtResource( 1 )]
-transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -0.479433 )
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0.00460839, 0.00477552, -0.477202 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.377488, -0.476649, 0.79392, 0.205035, 0.879094, 0.430296, -0.90303, 0.000349943, 0.429577, -1.76001, 0.45971, 0 )
@@ -22,9 +22,6 @@ light_energy = 0.3
 [node name="ARVROrigin" type="ARVROrigin" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0856852, 0.523469, 0.511694 )
 script = ExtResource( 2 )
-speed = 2.0
-speedBoost = 2.0
-mouse_sens = 0.3
 
 [node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00132012, -2.38419e-07, 0.00343132 )

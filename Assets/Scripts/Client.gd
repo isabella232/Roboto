@@ -20,3 +20,4 @@ func _OnConnectionSucceeded():
 	print("Successfully connected")
 	isConnected = true
 	get_node("/root/Root/UI").ChangeInfo("Connected!")
+	get_node("/root/Root/World/Players").Local_AddPlayer()

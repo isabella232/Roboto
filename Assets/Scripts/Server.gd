@@ -5,7 +5,7 @@ var port = 1909
 var max_players = 100
 var concurrentPlayers = 0
 var isRunning
-	
+
 func StartServer():
 	network.create_server(port, max_players)
 	get_tree().set_network_peer(network)

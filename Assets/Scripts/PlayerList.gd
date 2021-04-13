@@ -29,12 +29,12 @@ remotesync func All_AddPlayer(playerNetworkId):
 	player.set_network_master(playerNetworkId)
 	playerList.append(playerNetworkId)
 	
+	# If I am the local player, I need to log that
+	if playerNetworkId == get_tree().get_network_unique_id():
+		player.isLocalPlayer = true
+	
 	# Put the player object into the tree
 	var playerParent = get_node("/root/Root/World/Players")
 	playerParent.add_child(player)
 	
 	print("Spawned player with instanceID: " + str(player.get_instance_id()) + " and network unique ID: " + str(playerNetworkId))
-	
-	# If I am the local player, I need to log that
-	if playerNetworkId == get_tree().get_network_unique_id():
-		player.isLocalPlayer = true

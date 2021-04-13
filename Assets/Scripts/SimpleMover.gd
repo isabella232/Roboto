@@ -4,6 +4,13 @@ export(float) var speed = 2
 
 var isLocalPlayer = false
 
+func _ready():
+	if (isLocalPlayer):
+		var camera = get_node("/root/Root/World/Camera")
+		get_node("/root/Root/World").remove_child(camera)
+		get_node("/root/Root/World/Players/" + str(get_tree().get_network_unique_id())).add_child(camera)
+	
+
 # Runs at 60 FPS
 func _physics_process(delta):
 	Local_MovePlayer(delta)
@@ -17,9 +24,13 @@ func Local_MovePlayer(delta):
 	# Only the local player should ever run this
 	if isLocalPlayer:
 		if Input.is_action_pressed("move_forward"):
-			translate_object_local(transform.basis.z * speed * delta)
+			translate_object_local(-transform.basis.z * speed * delta)
 		if Input.is_action_pressed("move_backward"):
-			translate_object_local(transform.basis.z * -speed * delta)
+			translate_object_local(transform.basis.z * speed * delta)
+		if Input.is_action_pressed("move_right"):
+			translate_object_local(transform.basis.x * speed * delta)
+		if Input.is_action_pressed("move_left"):
+			translate_object_local(-transform.basis.x * speed * delta)
 
 # For the locally controlled instance to update the server
 func Local_SendPlayerState(playerState):

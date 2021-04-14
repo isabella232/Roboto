@@ -20,8 +20,10 @@ func _Peer_Connected(player_id):
 	print("User " + str(player_id) + " connected.")
 	concurrentPlayers = concurrentPlayers + 1
 	get_node("/root/Root/UI").ChangeInfo("Num Connected: " + str(concurrentPlayers))
+	get_node("/root/Root/World/Players").Server_AddPlayer(player_id)
 	
 func _Peer_Disconnected(player_id):
 	concurrentPlayers = concurrentPlayers - 1
 	get_node("/root/Root/UI").ChangeInfo("Num Connected: " + str(concurrentPlayers))
+	get_node("/root/Root/World/Players").Server_RemovePlayer(player_id)
 	print("User " + str(player_id) + " disconnected.")
